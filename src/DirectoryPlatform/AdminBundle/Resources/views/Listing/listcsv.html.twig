@@ -1,0 +1,10 @@
+{% extends 'AdminBundle::Layout/base.html.twig' %}
+
+{% block title %}Importing csv file for listing{% endblock %}
+
+{% block content %}
+	{% for dir in dirs %}
+		<a href="{{ path('app_category_import', {'csv_filename' : dir} ) }}">{{ dir }}</a>
+<br />
+	{% endfor %}
+{% endblock %}

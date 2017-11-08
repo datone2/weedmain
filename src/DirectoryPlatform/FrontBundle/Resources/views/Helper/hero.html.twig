@@ -1,0 +1,44 @@
+<div class="hero-wrapper">
+    <div class="hero">
+        <div class="container">
+            <h1>{{ 'Search City Gems'|trans }}</h1>
+            <p>{{ 'Find the best spots or places in your city by using our directory theme. Start listing anything today.'|trans }}</p>
+
+            {{ form_start(filter, {'name': 'filter-hero-form'}) }}
+            {{ form_widget(filter) }}
+            {{ form_end(filter) }}
+
+            {% if categories_popular|length %}
+                <div class="hero-categories text-center">
+                    <strong class="col-md-12">{{ 'Popular categories'|trans }}</strong>
+
+                    <ul>
+                        {% for category in categories_popular %}
+                            <li>
+                                <a href="{{ path('category_detail', {'slug': category.getSlug()})}}">
+								<div class="col-md-12">
+								{% set imagePath = '' %}
+								{% if category.getName() == 'Travel' %}
+								{% set imagePath = 'airplane.png' %}
+								{% elseif category.getName() == 'Dispensarys' %}
+								{% set imagePath = 'disipline.png' %}
+								{% elseif category.getName() == 'Delivery' %}
+								{% set imagePath = 'delivery.png' %}
+								{% elseif category.getName() == 'Doctor' %}
+								{% set imagePath = 'doctor.png' %}
+								{% else %}
+								{% set imagePath = 'noimage.gif' %}								
+								{% endif %}
+								<img src="{{asset('images/'~imagePath)}}" class="p-10">
+								<div class='color-black'>
+                                    {{ category.getName() }} {# <span>({{ category.getListings()|length }})</span> #}
+									</div>
+									</div>
+                                </a>{#{% if not loop.last %},{% endif %}#}</li>
+                        {% endfor %}
+                    </ul>
+                </div><!-- /.hero-categories -->
+            {% endif %}
+        </div><!-- /.container -->
+    </div><!-- /.hero -->
+</div><!-- /.hero-wrapper -->

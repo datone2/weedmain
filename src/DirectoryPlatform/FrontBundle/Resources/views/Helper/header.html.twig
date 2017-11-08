@@ -1,0 +1,141 @@
+<div class="header-wrapper">
+    <div class="header">
+        <div class="container{% if fullwidth is defined %}-fluid{% endif %}">
+            <div class="header-brand">
+                <a href="{{ path('homepage') }}">
+                    <span class="header-brand-image">                        
+                      
+                       
+                        <img src="{{ asset('images/logo.png') }}" alt="{{ 'Home'|trans }}" class="image-svg">
+                        
+                    </span><!-- /.header-brand-image -->
+
+                    <span class="header-brand-title">
+                        <strong>Directory</strong><span>Platform</span>
+                    </span><!-- /.header-brand-title -->
+                </a>
+            </div><!-- /.header-brand -->
+
+            <div class="header-nav-primary">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="{{ path('homepage') }}" class="nav-link {% if menu_active is defined and menu_active == 'home' %}active{% endif %}">
+                            {{ 'Home'|trans }}
+                        </a> 
+                    </li><!-- /.nav-item -->
+
+                    <li class="nav-item">
+                        <a href="{{ path('listing') }}" class="nav-link {% if menu_active is defined and menu_active == 'listings' %}active{% endif %}">
+                            {{ 'Listings'|trans }}
+                        </a> 
+                    </li><!-- /.nav-item -->
+
+                    <li class="nav-item">
+                        <a href="{{ path('post') }}" class="nav-link {% if menu_active is defined and menu_active == 'posts' %}active{% endif %}">
+                            {{ 'Blog'|trans }}
+                        </a> 
+                    </li><!-- /.nav-item -->                    
+                    
+                    {#
+                    <li class="nav-item dropdown">
+                        <a href="{{ path('listing') }}" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                            {{ 'Locations'|trans }}
+                        </a> 
+
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Item 1</a>
+                            <a href="#" class="dropdown-item">Item 2</a>
+                            <a href="#" class="dropdown-item">Item 3</a>
+                            <a href="#" class="dropdown-item">Item 4</a>
+                            <a href="#" class="dropdown-item">Item 5</a>
+                        </div><!-- /.sub-menu -->
+                    </li><!-- /.nav-item -->                    
+                    #}
+                </ul><!-- /.nav -->
+            </div><!-- /.header-nav-primary -->
+
+            <div class="header-nav-secondary">
+                <ul class="nav">
+                    {% if not app.user %}
+                        <li class="nav-item hidden-sm-down">
+                            <a href="{{ path('fos_user_security_login') }}" class="nav-link" data-toggle="modal" data-target="#modal-login">
+                                {{ 'Login'|trans }}
+                            </a>
+                        </li>
+
+                        <li class="nav-item hidden-sm-down">
+                            <a href="{{ path('fos_user_registration_register') }}" class="nav-link" data-toggle="modal" data-target="#modal-register">
+                                {{ 'Register'|trans }}
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a href="{{ path('listing_create')}}" class="nav-link nav-btn color-white">
+                            + {{ 'Add Listing'|trans }}
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- /.header-nav-secondary -->
+
+            {% if app.user %}
+                <div class="header-nav-user">
+                    <ul class="nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                                {% spaceless %}
+                                    {% if app.user.profile and app.user.profile.getAvatarName() %}
+                                        <img src="{{ vich_uploader_asset(app.user.profile, 'avatarImage') }}" alt="{{ app.user.getProfile().getDisplayName() }}">
+                                    {% else %}
+                                        <div class="dropdown-avatar">
+                                            {% if app.user.profile %}
+                                                {{ app.user.profile.getInitials() }}
+                                            {% else %}
+                                                {{ app.user.getUsername()|first }}
+                                            {% endif %}
+                                        </div><!-- /.dropdown-avatar -->
+                                    {% endif %}
+
+                                    {% if app.user.getProfile() %}
+                                        <span>{{ app.user.getProfile().getDisplayName() }}</span>
+                                    {% else %}
+                                        <span>{{ app.user.getUsername() }}</span>
+                                    {% endif %}
+                                {% endspaceless %}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="header-dropdown">
+                                {% if app.user.hasRole('ROLE_SUPER_ADMIN') %}
+                                    <a class="dropdown-item" href="{{ path('admin_dashboard') }}">{{ 'Admin Dashboard'|trans }}</a>
+                                {% endif %}
+
+                                <a class="dropdown-item" href="{{ path('listing_my') }}">{{ 'Listings'|trans }}</a>
+								<a class="dropdown-item" href="{{ path('product_my') }}">{{ 'Products'|trans }}</a>
+                                <a class="dropdown-item" href="{{ path('favorite') }}">{{ 'Favorites'|trans }}</a>
+                                <a class="dropdown-item" href="{{ path('search') }}">{{ 'Searches'|trans }}</a>
+                                <a class="dropdown-item" href="{{ path('order') }}">{{ 'Orders'|trans }}</a>                                
+                                <a class="dropdown-item" href="{{ path('profile_update') }}">{{ 'Your Profile'|trans }}</a>                                
+                                <a class="dropdown-item" href="{{ path('fos_user_change_password') }}">{{ 'Change Password'|trans }}</a>
+                                <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item shopping-cart">
+                            <a href="{{ path('cart') }}" class="nav-link">
+                                <i class="fa fa-shopping-cart"></i>
+
+                                <span class="shopping-cart-title">{{ 'Shopping cart'|trans }}</span>
+
+                                <span class="badge">{{ cart_get_count() }}</span><!-- /.badge -->
+                            </a><!-- /.nav-link -->
+                        </li><!-- /.shopping-cart -->
+                    </ul><!-- /.nav -->
+                </div><!-- /.header-nav-user -->
+            {% endif %}
+        </div><!-- /.container -->
+    </div><!-- /.header -->
+
+    <div class="header-toggle">
+        <span>{{ 'Toggle Navigation'|trans }}</span>
+    </div><!-- /.header-toggle -->
+</div><!-- /.header-wrapper -->

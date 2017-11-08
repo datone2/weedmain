@@ -1,0 +1,264 @@
+{% extends 'FrontBundle::Layout/base.html.twig' %}
+
+{% set menu_active = 'home' %}
+
+{% block title %}{{ 'Listing & Directory Application for Symfony'|trans }}{% endblock %}
+
+{% block body_class %}header-transparent{% endblock %}
+
+{% block content %}
+    {% include 'FrontBundle::Helper/hero.html.twig' %}
+    <div class="listing">
+        <div class="container">
+            <div class="content mb-70">
+
+                {% if listings|length %}
+                    <span class="theme-color">
+                        {% include 'FrontBundle::Helper/page_title.html.twig' with {title: "Most Recent Listings"|trans, description: "Find out most recent listings & classifieds added into our directory catalogue by our users."|trans} %}
+                    </span>
+                    <div class="listings-wrapper">
+                        <div class="row">
+                            {% for listing in listings %}
+                                {% if loop.index == 1 or loop.index == 6%}
+                                    <div class="col-md-6 p-l-0">
+                                    {% else %}
+                                        <div class="col-md-3 p-l-0">
+                                        {% endif %}
+
+                                        {% include 'FrontBundle::Listing/box.html.twig' %}
+                                    </div><!-- /.col-* -->
+                                {% endfor %}
+                            </div><!-- /.row -->
+                        </div><!-- /.listings-wrapper -->
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div id="location">
+            <div class="container">
+                <div class="content">
+                    {% if locations|length %}
+                        <span class="theme-color">
+                            {% include 'FrontBundle::Helper/page_title.html.twig' with {title: "Discover Popular Locations", description: "Most visited locations in the directory platform. Missing your city? Feel free to let us know."} %}
+                        </span>
+                        <div class="locations-wrapper">
+                            <div class="row">
+                                {% for location in locations %}
+                                    <div class="col-md-4 p-l-0">
+                                        {% include 'FrontBundle::Location/box.html.twig' %}
+                                    </div><!-- /.col-* -->
+                                {% endfor %}
+                            </div><!-- /.row -->
+                            <div class="col-md-12 text-center p-b-30 p-t-30">
+                                <a href="#" class="btn btn-primary-outline">{{ 'Show all'|trans }}</a>
+                            </div>
+                        </div><!-- /.locations-wrapper -->
+                    {% endif %}
+
+                </div>    
+            </div>    
+        </div>
+
+        <div id="brand-logo">
+            <div class="contentRotation">
+                <div class="container">
+                    <h4 class="text-center color-white p-t-15">Brand Logo's</h4>
+                    <div class="row">
+                        <div class="col-md-12 heroSlider-fixed">
+                            <div class="overlay">
+                            </div>
+                            <!-- Slider -->
+                            <div class="slider responsive">
+                                <div>
+                                    <img src="{{asset('images/brand-logo/1.jpg')}}" alt="" />
+                                </div>
+                                <div>
+                                    <img src="{{asset('images/brand-logo/2.png')}}" alt="" />
+                                </div>
+
+                                <div>
+                                    <img src="{{asset('images/brand-logo/6.jpeg')}}" alt="" />
+                                </div>
+                                <div>
+                                    <img src="{{asset('images/brand-logo/7.png')}}" alt="" />
+                                </div>
+                                <div>
+                                    <img src="{{asset('images/brand-logo/8.png')}}" alt="" />
+                                </div>
+                                <div>
+                                    <img src="{{asset('images/brand-logo/3.png')}}" alt="" />
+                                </div>
+                                <div>
+                                    <img src="{{asset('images/brand-logo/4.png')}}" alt="" />
+                                </div>
+                                <div>
+                                    <img src="{{asset('images/brand-logo/5.png')}}" alt="" />
+                                </div>
+                                <div>
+                                    <img src="{{asset('images/brand-logo/9.png')}}" alt="" />
+                                </div>
+                                <div>
+                                    <img src="{{asset('images/brand-logo/10.png')}}" alt="" />
+                                </div>
+                            </div>
+                            <!-- control arrows -->
+                            <div class="prev">
+                                <span class="fa fa-chevron-left" aria-hidden="true"></span>
+                            </div>
+                            <div class="next">
+                                <span class="fa fa-chevron-right" aria-hidden="true"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class='color-white text-center'>
+                    Lorem ipsum dolor sit amet, sed offendit ocurreret consectetuer in, fabulas tincidunt instructior vis te. Vis delicata conceptam complectitur ne. Ea oporteat volutpat consequat eam. Purto facete albucius ea usu, cum et quas meliore deserunt, cu nullam copiosae accusata vel. Vim animal deterruisset at. Exerci soluta postulant ex sed.
+
+                    Mel suas audiam omittam in, oratio labore quo ei. Id aliquam facilis necessitatibus nam, vix dignissim conclusionemque cu. Qui graece malorum ex, ad habemus albucius tacimates cum, cu inani qualisque eum. 
+
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div id="categoryInterest">
+            <div class="container">
+                <div class="content">    
+
+                    {% if categories|length %}
+                        <span class="theme-color">
+                            {% include 'FrontBundle::Helper/page_title.html.twig' with {title: "Categories & Interests", description: "Most popular categories in system ordered by highest number of assigned listings."} %}
+                        </span>
+                        <div class="categories-wrapper">
+                            <div class="row">
+                                <ul class="categories-ul">
+                                    {% for category in categories %}
+                                        {% if loop.index < 8 %}
+                                            <li class="categories-li">
+                                                {% include 'FrontBundle::Category/box.html.twig' %}
+                                            </li><!-- /.col-* -->
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div><!-- /.row -->
+                        </div><!-- /.categories-wrapper -->
+
+                        <div class="btn-center">
+                            <a href="{{ path('category') }}" class="btn btn-primary">{{ 'Show All Categories'|trans }}</a>
+                        </div><!-- /.btn-center -->
+                    {% endif %}
+
+                    <div class="business">
+                        <div class="text-center p-b-50">
+                            <h3 class="theme-color">Business Products</div>
+                        <ul class="text-center">
+                            <li class="business-li">
+                                <img src="{{asset('images/revicon2.png')}}" width="100%">
+                                {#<span class="category-title">
+                                    Disipline
+                                </span>#}
+                            </li>
+                            <li class="business-li">
+                                <img src="{{asset('images/revicon1.png')}}" width="100%">
+                                {#<span class="category-title">
+                                    Delivery
+                                </span>#}
+                            </li>
+                            <li class="business-li">
+                                <img src="{{asset('images/icon3.png')}}" width="100%">
+                                {#<span class="category-title">
+                                    Medical
+                                </span>#}
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-12 text-center p-t-30">
+                        <div class="container">
+                            <h3 class="theme-color p-b-30">Finding Recreational Dispensary Near me</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, sed offendit ocurreret consectetuer in, fabulas tincidunt instructior vis te. Vis delicata conceptam complectitur ne. Ea oporteat volutpat consequat eam. Purto facete albucius ea usu, cum et quas meliore deserunt, cu nullam copiosae accusata vel. Vim animal deterruisset at. Exerci soluta postulant ex sed.
+                            </p><p>
+                                Mel suas audiam omittam in, oratio labore quo ei. Id aliquam facilis necessitatibus nam, vix dignissim conclusionemque cu. Qui graece malorum ex, ad habemus albucius tacimates cum, cu inani qualisque eum. Quo discere consulatu ex. Noster efficiantur te his, ne cum nibh porro voluptatum.
+                            </p><p>
+                                Eros platonem consequat nec ea, ex nihil invidunt prodesset mea. Pro in odio decore, tantas regione praesent ius ne, ius consul aperiri ocurreret ea. Ei utroque omnesque iracundia usu. Ea tota minim epicurei mea, eam dicit adolescens omittantur ei.
+                            </p><p>
+                                Qui laudem antiopam consulatu cu. Magna illud democritum sea id, sea ne duis movet delicata. Prodesset gloriatur honestatis est ut. Iudico dicant nemore ex usu. Ut soluta latine sit, ut percipit adversarium duo.
+                            </p><p>
+                                Eam tempor phaedrum facilisis te. Pro hinc meis laoreet eu, omnes gloriatur pertinacia cu nec. Nec no erant aeterno, cu per graecis inciderint mediocritatem, mel eu etiam molestie accusata. Ex meis affert vituperata sit, cu copiosae placerat vix, ne eum quod laudem. Menandri inimicus efficiendi mel at. Agam sententiae ne ius, mei at recteque persecuti definiebas. In iudico omnium apeirian sea, no sed odio alia zril.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upcoming-events">
+                    <div class="text-center upcoming-form">
+                        <h3 class="p-t-50 p-b-30">Upcoming Events</h3>
+                        <p class="p-t-30 p-b-30">
+                            Most popular categories in system ordered by
+                            highest number of assigned listings.
+                        </p>
+                        <form class="p-t-50">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="what are you looking for?">
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control">
+                                    <option selected></option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary searchBtn"><i class="fa fa-search"></i> SEARCH</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="rotateDiv"></div>
+                <div class="col-md-12 text-center">
+                    <p>
+                        Lorem ipsum dolor sit amet, sed offendit ocurreret consectetuer in, fabulas tincidunt instructior vis te. Vis delicata conceptam complectitur ne. Ea oporteat volutpat consequat eam. Purto facete albucius ea usu, cum et quas meliore deserunt, cu nullam copiosae accusata vel. Vim animal deterruisset at. Exerci soluta postulant ex sed.
+                    </p><p>
+                        Mel suas audiam omittam in, oratio labore quo ei. Id aliquam facilis necessitatibus nam, vix dignissim conclusionemque cu. Qui graece malorum ex, ad habemus albucius tacimates cum, cu inani qualisque eum. Quo discere consulatu ex. Noster efficiantur te his, ne cum nibh porro voluptatum.
+                    </p><p>
+                        Eros platonem consequat nec ea, ex nihil invidunt prodesset mea. Pro in odio decore, tantas regione praesent ius ne, ius consul aperiri ocurreret ea. Ei utroque omnesque iracundia usu. Ea tota minim epicurei mea, eam dicit adolescens omittantur ei.
+                    </p><p>
+                        Qui laudem antiopam consulatu cu. Magna illud democritum sea id, sea ne duis movet delicata. Prodesset gloriatur honestatis est ut. Iudico dicant nemore ex usu. Ut soluta latine sit, ut percipit adversarium duo.
+                    </p><p>
+                        Eam tempor phaedrum facilisis te. Pro hinc meis laoreet eu, omnes gloriatur pertinacia cu nec. Nec no erant aeterno, cu per graecis inciderint mediocritatem, mel eu etiam molestie accusata. Ex meis affert vituperata sit, cu copiosae placerat vix, ne eum quod laudem. Menandri inimicus efficiendi mel at. Agam sententiae ne ius, mei at recteque persecuti definiebas. In iudico omnium apeirian sea, no sed odio alia zril.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="browseArticles">
+        <div class="container">
+            <div class="content">  
+                <span class="theme-color">
+                    {% if posts|length %}
+                        {% include 'FrontBundle::Helper/page_title.html.twig' with {
+                    title: "Browse Articles & Tips",
+                    description: "Read blog posts about our recommendations and experiences.",
+                    class: "border-top"
+                } %}
+                    </span>
+                    <div class="posts-wrapper">
+                        <div class="row">
+                            <div class="col-md-10 push-md-1">                    
+                                {% for post in posts %}                    
+                                    {% include 'FrontBundle::Post/row.html.twig' %}
+                                {% endfor %}
+                            </div><!-- /.col-* -->
+                        </div><!-- /.row -->                    
+                    </div><!-- /.posts-wrapper -->
+
+                    <div class="btn-center">
+                        <a href="{{ path('post')}}" class="btn btn-primary">
+                            {{ 'Show All Blog Posts'|trans }}
+                        </a>
+                    </div><!-- /.btn-center -->
+                {% endif %}
+            </div>
+        </div><!-- /.content -->
+    </div><!-- /.container -->
+{% endblock %}

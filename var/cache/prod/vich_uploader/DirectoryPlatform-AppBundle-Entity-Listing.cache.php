@@ -1,0 +1,1 @@
+<?php return unserialize('C:42:"Vich\\UploaderBundle\\Metadata\\ClassMetadata":237:{a:2:{i:0;a:0:{}i:1;s:208:"a:5:{i:0;s:42:"DirectoryPlatform\\AppBundle\\Entity\\Listing";i:1;a:0:{}i:2;a:0:{}i:3;a:1:{i:0;s:89:"/home/weedmain/dispensary.weedmain.com/src/DirectoryPlatform/AppBundle/Entity/Listing.php";}i:4;i:1510043552;}";}}');

@@ -1,0 +1,53 @@
+
+<tr>
+	<td>
+		{{ product.getId() }}
+	</td>
+    <td class="table-min-width table-center">
+	<div class="table-card-content-inner"><div class="table-card-title">
+        <a href="#!">{% if product.getProductName() %}
+           {{ product.getProductName() }}
+        {% else %}
+            -
+        {% endif %}</a>
+	</div></div>
+    </td>
+	<td class="table-min-width">
+		{% if product.getVendor() %}
+			{{ product.getVendor() }}
+		{% else %}
+			-
+		{% endif %}
+	</td>
+	<td class="table-min-width table-center">
+		{% if product.getCategory() %}
+			<a href="{{ path('category_detail', {'slug': product.getCategory().getSlug()})}}" target="_blank">
+				{{ product.getCategory().getName() }}
+			</a>
+		{% else %}
+			-
+		{% endif %}
+	</td>
+    <td class="table-center">
+		{{ product.getSku() }}
+	</td>
+	<td class="table-center">
+        {% if product.getEnabled()=="1" %}
+       Enabled
+	   {% else %}
+			Disabled
+		{% endif %}
+       
+    </td>
+    <td class="table-min-width">
+        <div class="btn-group">
+            <a href="{{ path('admin_product_update', {'id': product.getId()}) }}" class="btn">
+                {{ 'Update' }}
+            </a>
+
+<a href="{{ path('admin_product_delete', {'id': product.getId()}) }}" class="btn">
+                {{ 'Delete' }}
+            </a>
+        </div>
+    </td>
+</tr>

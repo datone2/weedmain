@@ -1,0 +1,59 @@
+{% extends 'AdminBundle::Layout/base.html.twig' %}
+
+{% set active = 'products' %}
+
+{% set title = 'Products'|trans %}
+
+{% set actions = [
+	{
+		'link': path('admin_product_create'),
+		'title': 'Create'|trans,
+	}
+] %}
+
+{% set breadcrumbs = [
+	{
+		'link': path('homepage'), 'title': 'Home'|trans,
+	},
+	{
+		'link': path('admin_dashboard'), 'title': 'Dashboard'|trans,
+	},
+	{
+		'title': 'Products'|trans
+	}
+] %}
+
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    {% if products|length %}
+        <div class="table-wrapper">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>{{ 'Id'|trans }}</th>
+                        <th>{{ 'ProductName'|trans }}</th>
+						<th class="table-center">{{ 'Vendor'|trans }}</th>
+						<th class="table-center">{{ 'Category'|trans }}</th>
+						<th class="table-center">{{ 'Sku'|trans }}</th> 
+						<th class="table-center">{{ 'Enabled'|trans }}</th> 
+                        <th class="table-min-width"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for product in products %}
+                        {% include 'AdminBundle::Product/row.html.twig' %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="navigation">
+                {{ knp_pagination_render(products) }}
+            </div>
+        </div><!-- /.table-wrapper -->
+    {% else %}
+        {{ include('AppBundle::Helper/empty.html.twig') }}
+    {% endif %}
+{% endblock %}

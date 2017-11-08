@@ -1,0 +1,37 @@
+{% extends 'AdminBundle::Layout/base.html.twig' %}
+
+{% set active = 'poducts' %}
+
+{% set actions = [
+       
+    {
+        'link': path('admin_product_create'),
+        'title': 'Create'|trans,
+    }
+] %}
+
+{% set title = 'Update Product'|trans ~ ' ' ~ product.getProductName() %}
+
+{% set breadcrumbs = [
+    {
+        'link': path('homepage'), 'title': 'Home'|trans,
+    },
+    {
+        'link': path('admin_dashboard'), 'title': 'Dashboard'|trans,
+    },
+    {
+        'link': path('admin_product'), 'title': 'Poducts'|trans,
+    },
+    {
+        'title': 'Update Product'|trans
+    }
+] %}
+
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
