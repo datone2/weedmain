@@ -109,7 +109,8 @@ class FilterType extends AbstractType
 	        	'label' => 'Radius',
 	        	'mapped' => false,
 	            'required' => false,
-	        ])			        			
+	        ])
+			/*
 			->add('radius', IntegerType::class, [	
 				'label' => false,			
 				'required' => false,
@@ -118,7 +119,8 @@ class FilterType extends AbstractType
 					'class' => 'hidden',
 					'placeholder' => 'Radius',
 				],
-			])									
+			])
+			*/
 			->add('save', SubmitType::class, [
 				'label' => 'Search Listings',
 				'attr' => ['class' => 'btn btn-primary'],

@@ -24,7 +24,7 @@ class Config
     /**
      * @var float
      *
-     * @ORM\Column(name="distance", type="float", nullable=true)
+     * @ORM\Column(name="distance", type="integer", nullable=true)
      */
     private $distance;
 

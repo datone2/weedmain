@@ -41,17 +41,18 @@ class ListingController extends Controller
 
         //////////    show only the close by 50 miles radius to user ip adresss
         $userIP=$this->container->get('request_stack')->getMasterRequest()->getClientIp();
-        $details = (array) json_decode(file_get_contents("http://ipinfo.io/$userIP"));
+
+        $details = (array) json_decode(file_get_contents("http://ip-api.com/json/$userIP"));
 
 
-       
-        if (isset($details['loc'])) {
+        $config = $this->getDoctrine()->getRepository('AppBundle:Config')->findAll();
 
-            $userLocation = explode(',', $details['loc']);
+        if (($details['status']=="success")) {
             $closeByLIstings = [];
             foreach ($listings as $listing) {
-                $distance = $this->distance($userLocation['0'], $userLocation['1'], $listing->getLatitude(), $listing->getLongitude(), 'M');
-                if ($distance <= 50) {
+
+                $distance = $this->distance($details['lat'], $details['lon'], $listing->getLatitude(), $listing->getLongitude(), 'M');
+                if ($distance <= $config[0]->getDistance()) {
                     $closeByLIstings[] = $listing;
                 }
             }
@@ -60,7 +61,6 @@ class ListingController extends Controller
            
         }
 
- 
 
         $response = $this->render('FrontBundle::Listing/index.html.twig', [
         	'filter' => $filter->createView(),
