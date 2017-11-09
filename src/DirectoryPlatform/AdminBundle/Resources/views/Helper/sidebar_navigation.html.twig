@@ -4,6 +4,11 @@
             <i class="fa fa-tachometer"></i><span>{{ 'Dashboard'|trans }}</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ path('admin_config') }}" class="nav-link {% if active is defined and active == 'configs' %}active{% endif %}">
+            <i class="fa fa-gear"></i><span>{{ 'Config'|trans }}</span>
+        </a>
+    </li>
 
     <li class="nav-item">
         <a href="{{ path('admin_listing') }}" class="nav-link {% if active is defined and active == 'listings' %}active{% endif %}">
