@@ -21,13 +21,13 @@ class Claim
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="User", inversedBy="claims")
-	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id",onDelete="CASCADE")
 	 */
 	private $user;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Listing", inversedBy="claims")
-	 * @ORM\JoinColumn(name="listing_id", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="listing_id", referencedColumnName="id",onDelete="CASCADE")
 	 */
 	private $listing;
 
