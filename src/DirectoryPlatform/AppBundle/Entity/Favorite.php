@@ -20,7 +20,7 @@ class Favorite
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="favorites")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $user;
 

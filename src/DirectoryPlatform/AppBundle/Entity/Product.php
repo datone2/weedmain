@@ -45,7 +45,7 @@ class Product
 	
 	/**
 	 * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
-	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id",onDelete="CASCADE")
 	 */
 	private $user;
 	

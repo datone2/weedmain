@@ -22,26 +22,31 @@ class User extends BaseUser
 
 	/**
 	 * @ORM\OneToMany(targetEntity="Post", mappedBy="user")
+     * @ORM\JoinColumn(onDelete="CASCADE")
 	 */
 	private $posts;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="Listing", mappedBy="user")
+     * @ORM\JoinColumn(onDelete="CASCADE")
 	 */
 	private $listings;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="Review", mappedBy="user")
+     * @ORM\JoinColumn(onDelete="CASCADE")
 	 */
 	private $reviews;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="Favorite", mappedBy="user")
+     * @ORM\JoinColumn(onDelete="CASCADE")
 	 */
 	private $favorites;
 
 	/**
 	 * @ORM\OneToOne(targetEntity="Profile", mappedBy="user")
+     * @ORM\JoinColumn(onDelete="CASCADE")
 	 **/
 	private $profile;
 

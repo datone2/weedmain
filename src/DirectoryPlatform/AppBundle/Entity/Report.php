@@ -20,7 +20,7 @@ class Report
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="reports")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $user;
 

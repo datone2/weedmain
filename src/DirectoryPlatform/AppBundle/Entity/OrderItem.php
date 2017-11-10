@@ -20,13 +20,13 @@ class OrderItem
 
     /**
      * @ORM\ManyToOne(targetEntity="Order", inversedBy="items")
-     * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $order;
 
     /**
      * @ORM\ManyToOne(targetEntity="Listing", inversedBy="items")
-     * @ORM\JoinColumn(name="listing_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="listing_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $listing;
 

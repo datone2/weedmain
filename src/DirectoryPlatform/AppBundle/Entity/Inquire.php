@@ -20,13 +20,13 @@ class Inquire
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="User", inversedBy="inquires")
-	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
+	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true,onDelete="CASCADE")
 	 */
 	private $user;	
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Listing", inversedBy="inquires")
-	 * @ORM\JoinColumn(name="listing_id", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="listing_id", referencedColumnName="id",onDelete="CASCADE")
 	 */
 	private $listing;		
 

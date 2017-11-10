@@ -29,13 +29,13 @@ class Post
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
-	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id",onDelete="CASCADE")
 	 */
 	private $user;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
-	 * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="category_id", referencedColumnName="id",onDelete="CASCADE")
 	 */
 	private $category;
 
