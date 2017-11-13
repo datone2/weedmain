@@ -63,11 +63,15 @@ class UserController extends Controller
 	 */
 	public function deleteAction(Request $request, User $user)
 	{
+		      try {
 
 			$em = $this->getDoctrine()->getManager();
 			$em->remove($user);
 			$em->flush();
 			$this->addFlash('success', $this->get('translator')->trans('User has been successfully deleted.'));
+			  } catch (\Exception $e) {
+				  $this->addFlash('danger', $this->get('translator')->trans('An error occurred when deleting user object.'));
+			  }
 
 		return $this->redirectToRoute('admin_user');
 	}
