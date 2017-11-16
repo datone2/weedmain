@@ -30,19 +30,27 @@ class AppKernel extends Kernel
 
 	        // Pagination
 	        new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-
+            new Sonata\DatagridBundle\SonataDatagridBundle(),
 	        // Payum
 	        new Payum\Bundle\PayumBundle\PayumBundle(),
-
+            new Sonata\PageBundle\SonataPageBundle(),
 	        // Appplication
 	        new DirectoryPlatform\AdminBundle\AdminBundle(),
 	        new DirectoryPlatform\AppBundle\AppBundle(),
 	        new DirectoryPlatform\FrontBundle\FrontBundle(),
-	        
-	        //seo
+            // sonata
+
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\CacheBundle\SonataCacheBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+
+            //seo
 	        new Sonata\SeoBundle\SonataSeoBundle(),
             new Symfony\Cmf\Bundle\SeoBundle\CmfSeoBundle(),
-	        
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Sonata\NotificationBundle\SonataNotificationBundle(),
 	        
         ];
 
